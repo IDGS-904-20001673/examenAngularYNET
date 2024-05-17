@@ -1,0 +1,60 @@
+<app-nav-user/>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-16 py-3">
+                    Imagen
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Producto
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   Descripccion
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Precio
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Stock
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            @if(productsResults$ | async; as results){
+                @if(results.status){
+                @for (item of results.value; track $index) {
+                <tr class="border-b border-gray-200 dark:border-gray-700">
+                    <td class="px-6 py-4 ">
+                        <img class="w-16 mx-auto" src="https://th.bing.com/th/id/R.27fa9f7a7ce6789c74f3679be56786c8?rik=WDHNyAbYR8o9ww&riu=http%3a%2f%2f1000logos.net%2fwp-content%2fuploads%2f2016%2f11%2fNew-Google-Logo.jpg&ehk=gjUdHM5UOpzw4LQK5sTxmU3og4RMq7V%2fCR4l%2b%2fMJULc%3d&risl=&pid=ImgRaw&r=0" alt="">
+                    </td>
+                    <th scope="row"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                        {{item.code}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{item.description}}
+                    </td>
+                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                        {{item.price}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{item.stock}}
+                    </td>
+                    <td class="px-6 py-4 bg-gray-50 ">
+                        <a (click)="getProduct(item);"  class="cursor-pointer text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" >Añadir al carrito</a>
+                    </td>
+
+                </tr>
+                }
+                }
+                }
+
+        </tbody>
+    </table>
+</div>
