@@ -1,4 +1,4 @@
-
+create database dbAngularNet;
 use dbAngularNet;
 
 
