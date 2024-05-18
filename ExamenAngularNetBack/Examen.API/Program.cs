@@ -1,25 +1,20 @@
-
 using Examen.BUSSINESS.services.interfaces;
 using Examen.BUSSINESS.Dependencies;
-
 using Examen.BUSSINESS.services;
 using Examen.ENTITY;
 using Microsoft.EntityFrameworkCore;
-using System;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Examen.DATA.Repositories.interfaces;
 using Examen.DATA.Repositories;
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 builder.Services.InyecDependencies(builder.Configuration);
 
@@ -27,8 +22,8 @@ builder.Services.AddCors(options => {
     options.AddPolicy("Nueva Politica", app =>
     {
         app.AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+           .AllowAnyHeader()
+           .AllowAnyMethod();
     });
 });
 
@@ -42,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles(); // Asegúrate de incluir esto
 
 app.UseCors("Nueva Politica");
 

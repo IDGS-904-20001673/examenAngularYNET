@@ -9,11 +9,13 @@ namespace Examen.API.Controllers
     [Route("products")]
     public class ProductController : ControllerBase
     {
+        private readonly IWebHostEnvironment _env;
         private readonly IProductService _productService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IWebHostEnvironment env, IProductService productService)
         {
-            _productService = productService;
+            _env = env ?? throw new ArgumentNullException(nameof(env));
+            _productService = productService ?? throw new ArgumentNullException(nameof(productService));
         }
 
         [HttpGet]
@@ -62,31 +64,64 @@ namespace Examen.API.Controllers
 
         [HttpPost]
         [Route("insert")]
-        public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
+        public async Task<ActionResult<Response<Product>>> CreateProduct([FromForm] ProductRequest request)
         {
-
             var response = new Response<Product>();
 
             try
             {
-                response.status=true;
+                if (request.Image == null || request.Image.Length == 0)
+                {
+                    return BadRequest(new { message = "No se subió ninguna imagen" });
+                }
+
+                // Verificar que WebRootPath no es nulo
+                if (string.IsNullOrEmpty(_env.WebRootPath))
+                {
+                    throw new InvalidOperationException("WebRootPath no está configurado.");
+                }
+
+                // Guardar la imagen en el servidor
+                var uploadsFolderPath = Path.Combine(_env.WebRootPath, "uploads");
+                if (!Directory.Exists(uploadsFolderPath))
+                {
+                    Directory.CreateDirectory(uploadsFolderPath);
+                }
+
+                var fileName = $"{Guid.NewGuid()}_{request.Image.FileName}";
+                var filePath = Path.Combine(uploadsFolderPath, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await request.Image.CopyToAsync(stream);
+                }
+
+                // Crear el producto con la ruta de la imagen
+                var product = new Product
+                {
+                    Code = request.Code,
+                    Description = request.Description,
+                    Price = request.Price,
+                    Stock = request.Stock,
+                    Img = $"/uploads/{fileName}"
+                };
+
                 var newProduct = await _productService.CreateProduct(product);
-                CreatedAtAction(nameof(GetProduct), new { id = newProduct.Id }, newProduct);
+
+                response.status = true;
                 response.value = newProduct;
-                response.message="SUCCESS";
+                response.message = "SUCCESS";
+
+                return CreatedAtAction(nameof(GetProduct), new { id = newProduct.Id }, response);
             }
             catch (Exception e)
             {
-                response.status=true;
-                response.message=e.Message;
+                response.status = false;
+                response.message = e.Message;
+                return StatusCode(500, response);
             }
-
-            return Ok(response);
-
-
-
-            
         }
+
 
         [HttpPut]
         [Route("update")]

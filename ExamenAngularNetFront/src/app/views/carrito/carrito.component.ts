@@ -6,6 +6,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { buy, userId } from '../../interfaces/auth';
 import { GeneralResponse } from '../../interfaces/general-response';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-carrito',
@@ -20,10 +21,11 @@ export class CarritoComponent {
   id : Number;
   success : boolean = false;
   total : any = null;
-
+  rute : string;
 
   constructor(private serviceCarrito: CarritoService) {
    this.id=Number(sessionStorage.getItem('id'));
+   this.rute = environment.api;
   }
 
   ngOnInit() {
@@ -61,8 +63,9 @@ export class CarritoComponent {
       }
     }
     if(this.success){
+      this.products = [];
       alert("Listo se ah realizado la compra");
-      this.products=[];
+      
     }
   }
   

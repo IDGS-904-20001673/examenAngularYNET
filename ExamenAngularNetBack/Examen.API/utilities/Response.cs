@@ -8,4 +8,14 @@
 
         public string? message { get; set; }
     }
+
+    public class ProductRequest
+    {
+        public string? Code { get; set; }
+        public string? Description { get; set; }
+        public double? Price { get; set; }
+        public int? Stock { get; set; }
+        public IFormFile? Image { get; set; } // Archivo de imagen
+    }
+
 }

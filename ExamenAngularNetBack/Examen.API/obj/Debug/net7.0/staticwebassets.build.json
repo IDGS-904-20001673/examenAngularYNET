@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "EaJxDGQdNyu1Zn78JDMkjT5HFtr1k/N3RWmyasQi8ag=",
+  "Hash": "jgueO0KnTs19AYOV1KuI3nYvZrGNYLgkCm1IPUvyA3M=",
   "Source": "Examen.API",
   "BasePath": "_content/Examen.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Examen.API\\wwwroot",
+      "Source": "Examen.API",
+      "ContentRoot": "C:\\Users\\roble_p4xiojp\\OneDrive\\Escritorio\\ExamenAngulaYNET\\ExamenAngularNetBack\\Examen.API\\wwwroot\\",
+      "BasePath": "_content/Examen.API",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

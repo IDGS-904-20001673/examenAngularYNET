@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Examen.ENTITY\Examen.ENTITY.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

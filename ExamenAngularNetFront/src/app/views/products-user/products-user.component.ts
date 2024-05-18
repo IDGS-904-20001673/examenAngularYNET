@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CarritoService } from '../../core/services/carrito.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-products-user',
@@ -21,9 +22,10 @@ export class ProductsUserComponent {
   response: GeneralResponse<ProductId> = null;
   productsResults$!: Observable<GeneralResponse<ProductId[]>>;
   productSelected: ProductId;
-  
-  constructor(private service: ProductService, private serviceCarrito: CarritoService,  private route : Router) {
+  rute: string;
 
+  constructor(private service: ProductService, private serviceCarrito: CarritoService, private route: Router) {
+    this.rute = environment.api;
   }
   getProduct(ProductGet: ProductId) {
     this.serviceCarrito.putProduct(ProductGet);

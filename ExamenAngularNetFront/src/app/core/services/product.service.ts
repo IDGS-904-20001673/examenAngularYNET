@@ -12,9 +12,10 @@ export class ProductService {
 
   constructor(private http : HttpClient) { }
 
-  async insertProduct(request: Product){
-    return await firstValueFrom(this.http.post<GeneralResponse<ProductId>>(`${environment.api}products/insert`, request));
+  insertProduct(product: FormData) {
+    return this.http.post<GeneralResponse<ProductId>>(`${environment.api}products/insert`, product).toPromise();
   }
+
   getProducts(): Observable<GeneralResponse<ProductId[]>>{
     return this.http.get<GeneralResponse<ProductId[]>>(`${environment.api}products/getAll`);
   }

@@ -7,6 +7,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 
 
@@ -22,9 +23,15 @@ export class ProductsComponent {
   response: GeneralResponse<ProductId> = null;
   productsResults$!: Observable<GeneralResponse<ProductId[]>>;
   productSelected: ProductId;
+  selectedFile: File | undefined;
+  rute : string;
 
   constructor(private service: ProductService) {
+    this.rute = environment.api;
+  }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0]; // Almacena el archivo seleccionado
   }
 
   formProduct = new FormGroup({
@@ -40,16 +47,30 @@ export class ProductsComponent {
   }
  
   async submitData() {
-    if(this.formProduct.value.code == "" || this.formProduct.value.description == "" || this.formProduct.value.price == "" || this.formProduct.value.stock == ""){
-      alert("Llena todos los campos");
+    if (this.formProduct.invalid) {
       return;
+    }
+
+    const formData = new FormData();
+    formData.append('code', this.formProduct.get('code')?.value);
+    formData.append('description', this.formProduct.get('description')?.value);
+    formData.append('price', this.formProduct.get('price')?.value);
+    formData.append('stock', this.formProduct.get('stock')?.value);
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
+
+    try {
+      this.response = await this.service.insertProduct(formData);
+      if(this.response.status){
+        window.location.reload();
       }
-    const body = this.formProduct.value as Product;   
-    this.response = await this.service.insertProduct(body);
-    if (this.response.status) {
-      window.location.reload();
+    } catch (error) {
+      console.error(error);
     }
   }
+
+
 
   getProduct(ProductGet: ProductId) {
     this.productSelected = ProductGet;
