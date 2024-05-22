@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jgueO0KnTs19AYOV1KuI3nYvZrGNYLgkCm1IPUvyA3M=",
+  "Hash": "0uPAlmYlYo4Cgjt1xEM/3t3BjYbSM4x/HHfVAHAyMsg=",
   "Source": "Examen.API",
   "BasePath": "_content/Examen.API",
   "Mode": "Default",
@@ -15,5 +15,25 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\roble_p4xiojp\\OneDrive\\Escritorio\\ExamenAngulaYNET\\ExamenAngularNetBack\\Examen.API\\wwwroot\\uploads\\a390840f-59a0-423b-b839-e415e2002846_IMG_20230125_145348_599.jpg",
+      "SourceId": "Examen.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\roble_p4xiojp\\OneDrive\\Escritorio\\ExamenAngulaYNET\\ExamenAngularNetBack\\Examen.API\\wwwroot\\",
+      "BasePath": "_content/Examen.API",
+      "RelativePath": "uploads/a390840f-59a0-423b-b839-e415e2002846_IMG_20230125_145348_599.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\a390840f-59a0-423b-b839-e415e2002846_IMG_20230125_145348_599.jpg"
+    }
+  ]
 }

@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\roble_p4xiojp\\OneDrive\\Escritorio\\ExamenAngulaYNET\\ExamenAngularNetBack\\Examen.API\\wwwroot\\uploads\\a390840f-59a0-423b-b839-e415e2002846_IMG_20230125_145348_599.jpg",
+      "PackagePath": "staticwebassets\\uploads\\a390840f-59a0-423b-b839-e415e2002846_IMG_20230125_145348_599.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Examen.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Examen.API.props",
+      "PackagePath": "build\\Examen.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Examen.API.props",
+      "PackagePath": "buildMultiTargeting\\Examen.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Examen.API.props",
+      "PackagePath": "buildTransitive\\Examen.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
